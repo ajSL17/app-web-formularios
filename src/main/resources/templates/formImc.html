@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/styles/bootstrap/bootstrap.css}"
+          rel="stylesheet">
+    <script th:src="@{/scripts/bootstrap/bootstrap.bundle.js}"
+            type="text/javascript"></script>
 </head>
 <body>
-
+<div class="card">
+            <div class="card-header">
+                Calculado IMC - Cibertec
+            </div>
+            <div class="card-body">
+                <form th:action="@{/calcularimc}" method="post"
+                      th:object="${imcmodel}">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control"
+                               id="txtpeso" th:field="*{peso}">
+                        <label for="txtpeso">Ingrese su Peso</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control"
+                               id="txtaltura" th:field="*{altura}">
+                        <label for="txtaltura">Ingrese su altura en cm</label>
+                    </div>
+                    <button type="submit" class="btn btn-outline-secondary">
+                        Calcular IMC</button>
+                    <hr />
+                    <div th:if="${verresultado}" class="alert"
+                         th:classappend="${coloralert}" role="alert">
+                        <span th:text="${resultado} ?: ''"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
 </body>
 </html>
